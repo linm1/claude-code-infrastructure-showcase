@@ -4,6 +4,49 @@ Claude Code hooks that enable skill auto-activation, file tracking, and validati
 
 ---
 
+## Windows Compatibility
+
+These hooks are designed to work on both **Windows** (via Git Bash) and **Unix/macOS** systems.
+
+### Windows Setup Requirements
+
+1. **Install Git for Windows** (includes Git Bash)
+   - Download from https://git-scm.com/download/win
+
+2. **Install jq** (JSON processor required by hooks)
+   ```powershell
+   # Using Chocolatey (Admin PowerShell)
+   choco install jq
+
+   # Or using winget
+   winget install jqlang.jq
+   ```
+
+3. **Set Git Bash path** (fixes "not recognized as internal command" errors)
+   ```powershell
+   # Run in Admin PowerShell
+   [System.Environment]::SetEnvironmentVariable('CLAUDE_CODE_GIT_BASH_PATH', 'C:\Program Files\Git\bin\bash.exe', 'User')
+   ```
+
+4. **Restart VS Code completely** after setting the environment variable
+
+5. **Install hook dependencies**
+   ```bash
+   cd .claude/hooks
+   npm install
+   ```
+
+### Why This Matters
+
+On Windows, Claude Code may try to execute hooks through CMD/PowerShell instead of Git Bash. The `$CLAUDE_PROJECT_DIR` variable syntax is Unix-style and causes errors like:
+```
+'$CLAUDE_PROJECT_DIR' is not recognized as an internal or external command
+```
+
+**Solution:** All hook commands in `settings.json` use `bash .claude/hooks/script.sh` format instead of `$CLAUDE_PROJECT_DIR/.claude/hooks/script.sh`. This ensures hooks run through Git Bash on all platforms.
+
+---
+
 ## What Are Hooks?
 
 Hooks are scripts that run at specific points in Claude's workflow:
@@ -53,7 +96,7 @@ npm install
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/skill-activation-prompt.sh"
+            "command": "bash .claude/hooks/skill-activation-prompt.sh"
           }
         ]
       }
@@ -61,6 +104,8 @@ npm install
   }
 }
 ```
+
+> **Note:** Uses `bash .claude/hooks/...` format for Windows compatibility. See [Windows Compatibility](#windows-compatibility) section.
 
 **Customization:** ✅ None needed - reads skill-rules.json automatically
 
@@ -97,7 +142,7 @@ chmod +x your-project/.claude/hooks/post-tool-use-tracker.sh
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/post-tool-use-tracker.sh"
+            "command": "bash .claude/hooks/post-tool-use-tracker.sh"
           }
         ]
       }
@@ -105,6 +150,8 @@ chmod +x your-project/.claude/hooks/post-tool-use-tracker.sh
   }
 }
 ```
+
+> **Note:** Uses `bash .claude/hooks/...` format for Windows compatibility. See [Windows Compatibility](#windows-compatibility) section.
 
 **Customization:** ✅ None needed - auto-detects structure
 

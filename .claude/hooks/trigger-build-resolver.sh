@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Windows compatibility: use current directory if CLAUDE_PROJECT_DIR not set
+PROJECT_DIR="${CLAUDE_PROJECT_DIR:-.}"
+
 echo "Hook triggered at $(date)" >> /tmp/claude-hook-debug.log
 echo "Args: $@" >> /tmp/claude-hook-debug.log
 echo "Stdin:" >> /tmp/claude-hook-debug.log
@@ -6,7 +10,7 @@ cat >> /tmp/claude-hook-debug.log
 
 # Add detailed debugging
 echo "=== DEBUG SECTION ===" >> /tmp/claude-hook-debug.log
-echo "CLAUDE_PROJECT_DIR: $CLAUDE_PROJECT_DIR" >> /tmp/claude-hook-debug.log
+echo "PROJECT_DIR: $PROJECT_DIR" >> /tmp/claude-hook-debug.log
 echo "Current working directory: $(pwd)" >> /tmp/claude-hook-debug.log
 
 # Define the service directories to check
@@ -15,7 +19,7 @@ services_with_changes=()
 
 # Check each service directory for git changes
 for service in "${services_dirs[@]}"; do
-    service_path="$CLAUDE_PROJECT_DIR/$service"
+    service_path="$PROJECT_DIR/$service"
     echo "Checking service: $service at $service_path" >> /tmp/claude-hook-debug.log
     
     # Check if directory exists and is a git repo
@@ -39,7 +43,7 @@ for service in "${services_dirs[@]}"; do
 done
 
 # Return to original directory
-cd "$CLAUDE_PROJECT_DIR"
+cd "$PROJECT_DIR"
 
 echo "Services with changes: ${services_with_changes[@]}" >> /tmp/claude-hook-debug.log
 

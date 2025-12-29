@@ -3,7 +3,8 @@
 # TSC Hook with Visible Output
 # Uses stderr for visibility in Claude Code main interface
 
-CLAUDE_PROJECT_DIR="${CLAUDE_PROJECT_DIR:-$HOME/project}"
+# Windows compatibility: use current directory if CLAUDE_PROJECT_DIR not set
+PROJECT_DIR="${CLAUDE_PROJECT_DIR:-.}"
 HOOK_INPUT=$(cat)
 SESSION_ID="${session_id:-default}"
 CACHE_DIR="$HOME/.claude/tsc-cache/$SESSION_ID"
@@ -18,7 +19,7 @@ TOOL_INPUT=$(echo "$HOOK_INPUT" | jq -r '.tool_input // {}')
 # Function to get repo for a file
 get_repo_for_file() {
     local file_path="$1"
-    local relative_path="${file_path#$CLAUDE_PROJECT_DIR/}"
+    local relative_path="${file_path#$PROJECT_DIR/}"
     
     if [[ "$relative_path" =~ ^([^/]+)/ ]]; then
         local repo="${BASH_REMATCH[1]}"
@@ -62,7 +63,7 @@ get_tsc_command() {
 # Function to run TSC check
 run_tsc_check() {
     local repo="$1"
-    local repo_path="$CLAUDE_PROJECT_DIR/$repo"
+    local repo_path="$PROJECT_DIR/$repo"
     local cache_file="$CACHE_DIR/$repo-tsc-cmd.cache"
     
     cd "$repo_path" 2>/dev/null || return 1
