@@ -183,42 +183,109 @@
                 ]
             }
         },
-        "error-tracking": {
-            "type": "domain",
-            "enforcement": "suggest",
-            "priority": "high",
-            "description": "Sentry error tracking and performance monitoring patterns",
-            "promptTriggers": {
-                "keywords": [
-                    "error handling",
-                    "exception",
-                    "sentry",
-                    "error tracking",
-                    "captureException",
-                    "monitoring",
-                    "performance tracking"
-                ],
-                "intentPatterns": [
-                    "(add|create|implement|setup).*?(error handling|sentry|error tracking)",
-                    "(fix|handle|catch).*?(error|exception)",
-                    "(how to|best practice).*?(error|sentry|monitoring)"
-                ]
-            },
-            "fileTriggers": {
-                "pathPatterns": [
-                    "**/instrument.ts",
-                    "**/sentry*.ts",
-                    "**/*Controller.ts",
-                    "**/*Service.ts"
-                ],
-                "contentPatterns": [
-                    "@sentry",
-                    "Sentry\\.",
-                    "captureException",
-                    "captureMessage"
-                ]
-            }
+      "error-tracking": {
+        "type": "domain",
+        "enforcement": "suggest",
+        "priority": "high",
+        "description": "Sentry error tracking and performance monitoring patterns",
+        "promptTriggers": {
+          "keywords": [
+            "error handling",
+            "exception",
+            "sentry",
+            "error tracking",
+            "captureException",
+            "monitoring",
+            "performance tracking"
+          ],
+          "intentPatterns": [
+            "(add|create|implement|setup).*?(error handling|sentry|error tracking)",
+            "(fix|handle|catch).*?(error|exception)",
+            "(how to|best practice).*?(error|sentry|monitoring)"
+          ]
+        },
+        "fileTriggers": {
+          "pathPatterns": [
+            "**/instrument.ts",
+            "**/sentry*.ts",
+            "**/*Controller.ts",
+            "**/*Service.ts"
+          ],
+          "contentPatterns": [
+            "@sentry",
+            "Sentry\\.",
+            "captureException",
+            "captureMessage"
+          ]
+        },
+        "scrum-master": {
+          "type": "domain",
+          "enforcement": "suggest",
+          "priority": "high",
+          "description": "Agentic Scrum Master for facilitating Agile ceremonies and managing sprint artifacts",
+          "promptTriggers": {
+            "keywords": [
+              "sprint",
+              "scrum",
+              "agile",
+              "sprint planning",
+              "daily scrum",
+              "standup",
+              "daily standup",
+              "sprint review",
+              "retrospective",
+              "retro",
+              "backlog refinement",
+              "backlog grooming",
+              "user story",
+              "user stories",
+              "acceptance criteria",
+              "story points",
+              "velocity",
+              "burndown",
+              "product backlog",
+              "sprint backlog",
+              "scrum master",
+              "product owner",
+              "PO",
+              "sprint goal",
+              "ceremony",
+              "task assignment"
+            ],
+            "intentPatterns": [
+              "(start|begin|plan|prepare).*?(sprint|iteration)",
+              "(daily|standup).*?(scrum|meeting|update)",
+              "(sprint|iteration).*?(review|demo|retrospective|retro)",
+              "(refine|groom|prioritize|estimate).*?(backlog|stories|tasks)",
+              "(create|add|write|update).*?(user story|stories|task|acceptance criteria)",
+              "(track|check|review).*?(progress|sprint|velocity|burndown)",
+              "act.*?scrum master",
+              "play.*?scrum master",
+              "(manage|organize).*?(sprint|scrum|agile)"
+            ]
+          },
+          "fileTriggers": {
+            "pathPatterns": [
+              ".scrum/**/*.md",
+              ".scrum/product-backlog.md",
+              ".scrum/config.md",
+              ".scrum/sprints/**/*"
+            ],
+            "contentPatterns": [
+              "sprint-info",
+              "sprint-backlog",
+              "product-backlog",
+              "daily-scrum",
+              "sprint-review",
+              "sprint-retro",
+              "User Story",
+              "Acceptance Criteria",
+              "Story Points",
+              "Sprint Goal"
+            ]
+          }
         }
+      }
     },
     "notes": {
         "enforcement_types": {
