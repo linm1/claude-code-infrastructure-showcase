@@ -4,6 +4,8 @@ set -e
 # Post-tool-use hook that tracks edited files and their repos
 # This runs after Edit, MultiEdit, or Write tools complete successfully
 
+# Windows compatibility: use current directory if CLAUDE_PROJECT_DIR not set
+PROJECT_DIR="${CLAUDE_PROJECT_DIR:-.}"
 
 # Read tool information from stdin
 tool_info=$(cat)
@@ -26,13 +28,13 @@ if [[ "$file_path" =~ \.(md|markdown)$ ]]; then
 fi
 
 # Create cache directory in project
-cache_dir="$CLAUDE_PROJECT_DIR/.claude/tsc-cache/${session_id:-default}"
+cache_dir="$PROJECT_DIR/.claude/tsc-cache/${session_id:-default}"
 mkdir -p "$cache_dir"
 
 # Function to detect repo from file path
 detect_repo() {
     local file="$1"
-    local project_root="$CLAUDE_PROJECT_DIR"
+    local project_root="$PROJECT_DIR"
 
     # Remove project root from path
     local relative_path="${file#$project_root/}"
@@ -87,7 +89,7 @@ detect_repo() {
 # Function to get build command for repo
 get_build_command() {
     local repo="$1"
-    local project_root="$CLAUDE_PROJECT_DIR"
+    local project_root="$PROJECT_DIR"
     local repo_path="$project_root/$repo"
 
     # Check if package.json exists and has a build script
@@ -122,7 +124,7 @@ get_build_command() {
 # Function to get TSC command for repo
 get_tsc_command() {
     local repo="$1"
-    local project_root="$CLAUDE_PROJECT_DIR"
+    local project_root="$PROJECT_DIR"
     local repo_path="$project_root/$repo"
 
     # Check if tsconfig.json exists
