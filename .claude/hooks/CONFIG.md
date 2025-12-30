@@ -16,7 +16,7 @@ Create or update `.claude/settings.json` in your project root:
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/skill-activation-prompt.sh"
+            "command": "bash .claude/hooks/skill-activation-prompt.sh"
           }
         ]
       }
@@ -27,7 +27,7 @@ Create or update `.claude/settings.json` in your project root:
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/post-tool-use-tracker.sh"
+            "command": "bash .claude/hooks/post-tool-use-tracker.sh"
           }
         ]
       }
@@ -37,15 +37,15 @@ Create or update `.claude/settings.json` in your project root:
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/stop-prettier-formatter.sh"
+            "command": "bash .claude/hooks/stop-prettier-formatter.sh"
           },
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/stop-build-check-enhanced.sh"
+            "command": "bash .claude/hooks/stop-build-check-enhanced.sh"
           },
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/error-handling-reminder.sh"
+            "command": "bash .claude/hooks/error-handling-reminder.sh"
           }
         ]
       }
@@ -232,7 +232,7 @@ You don't need all hooks. Choose what works for your project:
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/skill-activation-prompt.sh"
+            "command": "bash .claude/hooks/skill-activation-prompt.sh"
           }
         ]
       }
@@ -252,7 +252,7 @@ You don't need all hooks. Choose what works for your project:
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/post-tool-use-tracker.sh"
+            "command": "bash .claude/hooks/post-tool-use-tracker.sh"
           }
         ]
       }
@@ -262,7 +262,7 @@ You don't need all hooks. Choose what works for your project:
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/stop-build-check-enhanced.sh"
+            "command": "bash .claude/hooks/stop-build-check-enhanced.sh"
           }
         ]
       }
@@ -282,7 +282,7 @@ You don't need all hooks. Choose what works for your project:
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/post-tool-use-tracker.sh"
+            "command": "bash .claude/hooks/post-tool-use-tracker.sh"
           }
         ]
       }
@@ -292,7 +292,7 @@ You don't need all hooks. Choose what works for your project:
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/stop-prettier-formatter.sh"
+            "command": "bash .claude/hooks/stop-prettier-formatter.sh"
           }
         ]
       }
@@ -393,7 +393,7 @@ You can create your own hooks for other events:
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/my-custom-bash-guard.sh"
+            "command": "bash .claude/hooks/my-custom-bash-guard.sh"
           }
         ]
       }

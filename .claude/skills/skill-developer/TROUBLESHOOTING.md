@@ -372,7 +372,7 @@ Expected: Hook entries present
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/skill-activation-prompt.sh"
+            "command": "bash .claude/hooks/skill-activation-prompt.sh"
           }
         ]
       }
