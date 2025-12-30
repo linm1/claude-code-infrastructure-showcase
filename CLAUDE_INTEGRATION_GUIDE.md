@@ -383,7 +383,7 @@ fi
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/skill-activation-prompt.sh"
+            "command": "bash .claude/hooks/skill-activation-prompt.sh"
           }
         ]
       }
@@ -419,7 +419,7 @@ chmod +x $CLAUDE_PROJECT_DIR/.claude/hooks/post-tool-use-tracker.sh
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/post-tool-use-tracker.sh"
+            "command": "bash .claude/hooks/post-tool-use-tracker.sh"
           }
         ]
       }
@@ -614,7 +614,7 @@ Instead, **extract and merge** the sections they need:
         "hooks": [
           {
             "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/skill-activation-prompt.sh"
+            "command": "bash .claude/hooks/skill-activation-prompt.sh"
           }
         ]
       }
